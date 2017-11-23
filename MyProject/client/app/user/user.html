@@ -1,0 +1,765 @@
+<script>
+$(document).ready(function(){
+        $('#myModal').modal('show');
+
+        $('#btnsubmit').click(function() {
+          $('#myModal').modal('hide');
+          $('#myModalSeat').modal('show');ModalPay
+});
+
+$('#myModalSeat').on('shown.bs.modal', function (e) {
+  $('body').addClass('modal-open');
+})
+    });
+
+
+$('#myModal').on('click', '#btnsubmit', function(){
+    var i=document.getElementById("selectCity");
+    $('#myModal').modal('hide');
+});
+
+$('.img').click(function(){
+    this.style.backgroundColor = this.style.backgroundColor == 'red' ? 'blue' : 'red';
+});
+
+$('.img').click(function () {
+      $(this).toggleClass('selected');
+
+ });
+
+$('#btnsubmitSeat').click(function () {
+
+    var selected_activities =$('.selected');
+
+    console.log(selected_activities);
+    var ids = new Array();
+    selected_activities.each(function(){
+          var id_str   =  $(this).attr("id");
+
+          console.log(id_str);
+
+        ids.push(id_str);
+    });
+
+
+    var rate =ids.length*120
+    var arrValue=ids.toString();
+    var total = rate+40;
+    //document.getElementById('k').innerHTML = k
+    document.getElementById('seatPri').innerHTML = arrValue;
+    document.getElementById("seatPri1").innerHTML = rate;
+    document.getElementById('total1').innerHTML = total
+    $('#myModalSeat').modal('hide');
+    $('#ModalPay').modal('show');
+});
+
+function validateEmail(sEmail) {
+    var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    if (filter.test(sEmail)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+    }
+    function validateCCV(sCCV) {
+    var filter = /^[0-9]{3}$/;
+    if (filter.test(sCCV)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+$(document).ready(function() {
+   $('#payNow').click(function() {
+        var sEmail = $('#email').val();
+        if ($.trim(sEmail).length == 0) {
+            alert('Please enter valid email address');
+            e.preventDefault();
+        }
+        if (validateEmail(sEmail)) {
+          // alert('Email is valid');
+        }
+        else {
+            alert('Invalid Email Address');
+            e.preventDefault();
+        }
+        var x=$('#cardDetails').val();
+        if (isNaN(x))
+        {
+          alert("Must input numbers in card details");
+          return false;
+        }
+        var sCCV = $('#ccv').val();
+        if ($.trim(sCCV).length == 0) {
+            alert('Please enter valid CCV number');
+            e.preventDefault();
+        }
+        if (validateEmail(sCCV)) {
+          // alert('CCV is valid');
+        }
+        else {
+            alert('Invalid CCV number');
+            e.preventDefault();
+        }
+    });
+});
+
+</script>
+
+<style >
+.selected
+{
+background-color:green;
+}
+#layout{
+  background-color: white;
+  width : 400px;
+}
+#main{
+   border-spacing: 1em;
+
+}
+table, td, th {
+
+    width : 400px;
+}
+
+
+
+.img {
+    display:inline-block;
+    color:#444;
+    border:1px solid #CCC;
+    background:#00F;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    margin-left: 2px;
+    max-width: 200px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    width: 10%;
+    box-shadow:3px 3px 2px #888888;
+
+}
+
+.modal-header, h4, .close {
+     background-color: #5cb85c;
+     color:white !important;
+     text-align: center;
+     font-size: 30px;
+ }
+ .modal-footer {
+     background-color: #f9f9f9;
+ }
+
+ form {
+     border: 3px solid #f1f1f1;
+ }
+
+
+
+ .__seats-name{
+ font-size:30px
+ }
+ .__onlinecharfe{
+ font-size:20px
+ }
+
+
+ #sbtn {
+     background-color: #4CAF50;
+     color: white;
+     padding: 14px 20px;
+
+     border: none;
+     cursor: pointer;
+     border-radius: 3px;
+     align: center;
+
+ }
+
+ button:hover {
+     opacity: 0.8;
+ }
+
+ #cancelbtn {
+     width: auto;
+
+
+     background-color: #f44336;
+ }
+
+ .imgcontainer {
+     text-align: center;
+     margin: 24px 0 12px 0;
+ }
+
+
+
+ .container {
+     padding: 16px;
+     margin-left:10px;
+     margin-right:10px;
+ }
+
+ span.psw {
+     float: right;
+     padding-top: 16px;
+ }
+
+ /* Change styles for span and cancel button on extra small screens */
+ @media screen and (max-width: 300px) {
+     span.psw {
+        display: block;
+        float: none;
+     }
+     .cancelbtn {
+        width: 100%;
+     }
+ }
+
+
+ form {
+     border: 3px solid #f1f1f1;
+ }
+
+ input[type=text] {
+     width:auto;
+     padding: 12px 20px;
+     margin: 8px 0;
+     display: inline-block;
+     border: 1px solid #ccc;
+     box-sizing: border-box;
+     align:center;
+     margin-left:20px
+ }
+
+ button {
+     background-color: #4CAF50;
+     width: auto;
+     color: white;
+     padding: 14px 20px;
+     margin: 8px 0;
+     border: none;
+     cursor: pointer;
+    	border-radius:4px
+     align:center;
+     margin-left:100px
+ }
+
+ button:hover {
+     opacity: 0.8;
+ }
+
+ .cancelbtn {
+     width: auto;
+     padding: 10px 18px;
+     background-color: #f44336;
+ }
+
+ .imgcontainer {
+     text-align: center;
+     margin: 24px 0 12px 0;
+ }
+
+ img.avatar {
+     width: 40%;
+     border-radius: 50%;
+ }
+
+ .container {
+     padding: 16px;
+ }
+
+ span.psw {
+     float: right;
+     padding-top: 16px;
+ }
+
+ /* Change styles for span and cancel button on extra small screens */
+ @media screen and (max-width: 300px) {
+     span.psw {
+        display: block;
+        float: none;
+     }
+     .cancelbtn {
+        width: 100%;
+     }
+ }
+
+
+</style>
+
+
+
+
+<div class="container">
+  <h2>Movie Ticket booking</h2>
+  <!-- Trigger the modal with a button -->
+<!--  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Book Now</button>-->
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal"  role="dialog">
+    <div class="modal-dialog" style="width:1000px; height:1000px;">
+
+      <!-- Modal content-->
+      <div class="modal-content"style="height:550px;" >
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"> <span class="glyphicon glyphicon-facetime-video"></span> Movie Booking Details</h4>
+        </div>
+        <div class="modal-body">
+
+
+          <select id="selectCity" class="btn btn-default" placeholder="Choose City Name" ng-model="userCtrl.city" >
+            <option value="" disabled selected>Choose City Name</option>
+            <option value="{{value.city}}.setData(value)"  ng-repeat="value in userCtrl.mapping | unique:'city'">{{value.city}}</option>
+          </select>
+
+<!-- | filter:{'City':userCtrl.city} -->
+
+          <select id="selectTheatre" class="btn btn-default" placeholder="Choose Threatre Name" ng-model="userCtrl.theatre">
+            <option value="" disabled selected>Choose Threatre Name</option>
+            <option value="{{value.theatre}}" ng-repeat="value in userCtrl.mapping | unique:'theatre' ">{{value.theatre}}</option>
+          </select>
+          <!--  <option value="value.TheatreName" ng-repeat="value in userCtrl.awesomeThings | filter:{'city':userCtrl.city}">{{value.TheatreName}}</option>-->
+
+          <select id="selectMovie" class="btn btn-default" placeholder="Choose Movie Name" ng-model="userCtrl.name">
+            <option value="" disabled selected>Choose Movie Name</option>
+            <option value="{{value.original_title}}" ng-repeat="value in userCtrl.MovieData">{{value.original_title}}</option>
+          </select>
+          <select class="btn btn-default"  ng-model="userCtrl.date" placeholder="Choose Date">
+            <option value="" disabled selected>Choose Date</option>
+            <option value="{{value.date}}" ng-repeat="value in userCtrl.mapping" >{{value.date}}</option>
+          </select>
+          <select class="btn btn-default"  ng-model="userCtrl.time" placeholder="Choose Time">
+            <option value="" disabled selected>Choose Time</option>
+            <option value="{{value.time}}" ng-repeat="value in userCtrl.mapping" >{{value.time}}</option>
+          </select>
+
+        </div>
+
+        <div class="modal-footer">
+          <button id="btnsubmit" type="button" class="btn-success pull-right">Submit</button>
+          <!-- <button id="btnsubmit" type="button" class="btn-success pull-right" data-toggle="modal" data-target="#myModalSeat" data-dismiss="modal">Submit</button> -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="container">
+
+  <!-- Trigger the modal with a button -->
+<!--  <button type="button" id="btnSeatBook" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>-->
+
+  <!-- Modal -->
+  <div class="modal" id="myModalSeat" role="dialog">
+    <div class="modal-dialog" style="width:1000px; height:1000px;">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><span class="glyphicon glyphicon-film"></span>Seat Selection</h4>
+        </div>
+        <div class="modal-body">
+          <div id ="layout">
+              <table  class="table" id="main">
+                <tr>
+                  <th></th>
+                  <th>1</th>
+                  <th>2</th>
+                  <th>3</th>
+                  <th>4</th>
+                  <th>5</th>
+                  <th>6</th>
+                  <th>7</th>
+                  <th>8</th>
+                </tr>
+
+                <tr id="row1">
+                  <td>F</td>
+                <td id="A1">
+                  <div class="img" id="F1" >
+
+                  </div>
+                </td>
+                <td id="A2">
+                  <div class="img" id="F2" >
+
+                  </div>
+                </td>
+                <td id="A3">
+                  <div class="img" id="F3" >
+
+                  </div>
+                </td>
+                <td id="A4">
+                  <div class="img" id="F4" >
+
+                  </div>
+                </td>
+                <td id="A5">
+                  <div class="img" id="F5" >
+
+                  </div>
+                </td>
+                <td id="A6">
+                  <div class="img" id="F6" >
+
+                  </div>
+                </td>
+                <td id="A7">
+                  <div class="img" id="F7" >
+
+                  </div>
+                </td>
+                <td id="A8">
+                  <div class="img" id="F8" >
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <tr id="row2">
+                  <td>E</td>
+                <td id="B1">
+                  <div class="img" id="E1" >
+
+                  </div>
+                </td>
+                <td id="B2">
+                  <div class="img" id="E2">
+
+                  </div>
+                </td>
+                <td id="B3" >
+                  <div class="img" id="E3">
+
+                  </div>
+                </td>
+                <td id="B4">
+                  <div class="img" id="E4">
+
+                  </div>
+                </td>
+                <td id="B5">
+                  <div class="img" id="E5">
+
+                  </div>
+                </td>
+                <td id="B6">
+                  <div class="img" id="E6" >
+
+                  </div>
+                </td>
+                <td id="B7">
+                  <div class="img" id="E7">
+                  </div>
+                </td>
+                <td id="B8">
+                  <div class="img" id="E8">
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <tr id="row3" >
+                  <td>D</td>
+                <td id="C1">
+                  <div class="img" id="D1">
+
+                  </div>
+                </td>
+                <td id="C2">
+                  <div class="img" id="D2">
+
+                  </div>
+                </td>
+                <td id="C3">
+                  <div class="img" id="D3">
+
+                  </div>
+                </td>
+                <td id="C4">
+                  <div class="img" id="D4">
+
+                  </div>
+                </td>
+                <td id="C5">
+                  <div class="img" id="D5">
+
+                  </div>
+                </td>
+                <td id="C6">
+                  <div class="img" id="D6">
+
+                  </div>
+                </td>
+                <td id="C7">
+                  <div class="img" id="D7">
+
+                  </div>
+                </td>
+                <td id="C8">
+                  <div class="img" id="D8">
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <tr id="row4">
+                  <td>C</td>
+
+                <td id="D1">
+                  <div class="img" id="C1">
+
+                  </div>
+                </td>
+                <td id="D2">
+                  <div class="img" id="C2">
+
+                  </div>
+                </td>
+                <td id="D3">
+                  <div class="img" id="C3">
+
+                  </div>
+                </td>
+                <td id="D4">
+                  <div class="img" id="C4">
+
+                  </div>
+                </td>
+                <td id="D5">
+                  <div class="img" id="C5">
+
+                  </div>
+                </td>
+                <td id="D6">
+                  <div class="img" id="C6">
+
+                  </div>
+                </td>
+                <td id="D7">
+                  <div class="img" id="C7">
+
+                  </div>
+                </td>
+                <td id="D8">
+                  <div class="img" id="C8">
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <tr id="row4">
+                  <td>B</td>
+
+                <td id="E1">
+                  <div class="img" id="B1">
+
+                  </div>
+                </td>
+                <td id="E2">
+                  <div class="img" id="B2">
+
+                  </div>
+                </td>
+                <td id="E3">
+                  <div class="img" id="B3">
+
+                  </div>
+                </td>
+                <td id="E4">
+                  <div class="img" id="B4">
+
+                  </div>
+                </td>
+                <td id="E5">
+                  <div class="img" id="B5">
+
+                  </div>
+                </td>
+                <td id="E6">
+                  <div class="img" id="B6">
+
+                  </div>
+                </td>
+                <td id="E7">
+                  <div class="img" id="B7">
+
+                  </div>
+                </td>
+                <td id="E8">
+                  <div class="img" id="B8">
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <tr id="row5">
+                  <td>A</td>
+
+                <td id="F1">
+                  <div class="img" id="A1">
+
+                  </div>
+                </td>
+                <td id="F2">
+                  <div class="img" id="A2">
+
+
+                  </div>
+                </td>
+                <td id="F3">
+                  <div class="img" id="A3">
+
+                  </div>
+                </td>
+                <td id="F4">
+                  <div class="img" id="A4">
+
+
+                  </div>
+                </td>
+                <td id="F5">
+                  <div class="img" id="A5">
+
+                  </div>
+                </td>
+                <td id="F6">
+                  <div class="img" id="A6">
+
+                  </div>
+                </td>
+                <td id="F7">
+                  <div class="img" id="A7">
+
+                  </div>
+                </td>
+                <td id="F8">
+                  <div class="img" id="A8">
+
+                  </div>
+                </td>
+              </tr>
+
+              </table>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button id="btnsubmitSeat" type="button" class="btn-success pull-right"   >Submit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+</div>
+
+<div style="width:70%; height:70%; align:center; margin:1em auto; border:2px solid">
+      <h2 style="align:center; margin-left:35%">Booking Summary </h2>
+      <div class="imgcontainer">
+        <img src="https://image.tmdb.org/t/p/w500/"  alt="" style="width:100%;">
+      </div>
+
+      <div class="container">
+        <label style="font-size:30px"><b>Selected Seats</b></label>
+        <div>
+
+        <span id="seatPri" class="__seats-name"></span> <span id="seatPri1" class="__seat-price " style="font-size:30px; margin-left:50%;"></span><br>
+        <span  ng-repeat="value in userCtrl.bookingdetails" ng-if="$last">
+        <label><b>  Movie Show at: {{value.time}} </b></label><br>
+        <label><b>  Movie on date: {{value.date}} </b></label><br>
+        <label><b>  Movie Name: {{value.name}} </b></label><br>
+
+        <label><b>  Your City: {{value.City}} </b></label><br>
+        <label><b>  Your Theatre at: {{value.theatre}} </b></label><br>
+        </span>
+
+    	</div>
+        <label><b></b></label>
+        <div>
+        <span id="seatPri" class="__onlinecharfe">Online booking charge</span> <span id="seatPri" class="__onlinecharfe " style="font-size:20px; margin-left:40%">40</span>
+
+        </div>
+        <label><b></b></label>
+        <div>
+        <span id="total" class="__onlinecharfe">Total Amount(Rs.)</span> <span id="total1" class="__onlinecharfe " style="font-size:30px; margin-left:42%"><b></b></span>
+
+        </div>
+
+
+        <div class="">
+        <!-- <button type="button"  id="cancelbtn" class="btn btn-danger">Cancel</button>
+        <button type="button" ng-click="userCtrl.setData(value)" class="btn btn-success " style="margin-left:50%;" >Proceed</button> -->
+
+        </div>
+
+      </div>
+
+
+
+</div>
+<div class="container">
+
+  <!-- Trigger the modal with a button -->
+
+
+  <!-- Modal -->
+  <div id="ModalPay"class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" style="width:1000px;">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Payment Details</h4>
+        </div>
+        <div class="modal-body">
+          <form name="myForm" style="width:90%; align:center; margin:1em auto"action="/action_page.php">
+            <h2>Payment Details</h2>
+          <!--  <div class="imgcontainer">
+              <img src="assets/images/credit.jpg" alt="Golmaal-Again" style="width:100%;">
+            </div>-->
+
+            <div class="container">
+              <label><b>Username</b></label><br>
+              <input type="text" placeholder="Enter Username" name="uname" required><br>
+
+              <label><b>Email</b></label><br>
+              <input type="text" placeholder="example@email.com" id="email" name="email" required><br>
+
+              <label><b>Card Details</b></label><br>
+              <input sytle="width:100px" type="text" id="cardDetails"placeholder="0000 0000 0000 0000" maxlength="16" minlength="16" name="card number" required><br>
+
+
+              <label><b>CCV</b></label><br>
+              <input type="text" placeholder="" id="ccv" name="ccv" required><br>
+</div>
+
+            <div  style="background-color:#f1f1f1">
+              <button type="button" onclick="location.href ='/home'" class="cancelbtn pull-left">Cancel</button>
+              <button type="button" id="payNow" class="btn btn-home" ng-click="userCtrl.saveValue()" data-toggle="modal" data-dismiss="modal">Pay Now</button>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>-->
+      </div>
+
+    </div>
+  </div>
+
+</div>
